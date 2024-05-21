@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ContractorManagementModelStoreContainer" CdmEntityContainer="ContractorManagementEntities">
+    <EntitySetMapping Name="CM_PayrollConfig">
+      <EntityTypeMapping TypeName="ContractorManagementModel.CM_PayrollConfig">
+        <MappingFragment StoreEntitySet="CM_PayrollConfig">
+          <ScalarProperty Name="PayrollConfigId" ColumnName="PayrollConfigId" />
+          <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+          <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+          <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+          <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionImports">
+      <EntityTypeMapping TypeName="ContractorManagementModel.TransactionImport">
+        <MappingFragment StoreEntitySet="TransactionImport">
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="BusinessLineId" ColumnName="BusinessLineId" />
+          <ScalarProperty Name="ReferencedDateColumn" ColumnName="ReferencedDateColumn" />
+          <ScalarProperty Name="RecoveryDate" ColumnName="RecoveryDate" />
+          <ScalarProperty Name="RecoveredBy" ColumnName="RecoveredBy" />
+          <ScalarProperty Name="DifferenceRecovered" ColumnName="DifferenceRecovered" />
+          <ScalarProperty Name="DateExported" ColumnName="DateExported" />
+          <ScalarProperty Name="ExportedBy" ColumnName="ExportedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+          <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+          <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+          <ScalarProperty Name="ReferencedColumn" ColumnName="ReferencedColumn" />
+          <ScalarProperty Name="SelectedStartRow" ColumnName="SelectedStartRow" />
+          <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+          <ScalarProperty Name="SheetName" ColumnName="SheetName" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="TransactionImportId" ColumnName="TransactionImportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionImportAccountNoes">
+      <EntityTypeMapping TypeName="ContractorManagementModel.TransactionImportAccountNo">
+        <MappingFragment StoreEntitySet="TransactionImportAccountNo">
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="TransactionImportId" ColumnName="TransactionImportId" />
+          <ScalarProperty Name="TransactionImportAccountNoId" ColumnName="TransactionImportAccountNoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientBillingInfoViews">
+      <EntityTypeMapping TypeName="ContractorManagementModel.ClientBillingInfoView">
+        <MappingFragment StoreEntitySet="ClientBillingInfoView">
+          <ScalarProperty Name="ServiceOrderNo" ColumnName="ServiceOrderNo" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="SPLIT" ColumnName="SPLIT" />
+          <ScalarProperty Name="AMPS" ColumnName="AMPS" />
+          <ScalarProperty Name="RG11" ColumnName="RG11" />
+          <ScalarProperty Name="RG6l" ColumnName="RG6l" />
+          <ScalarProperty Name="RG6M" ColumnName="RG6M" />
+          <ScalarProperty Name="WRK" ColumnName="WRK" />
+          <ScalarProperty Name="QA100" ColumnName="QA100" />
+          <ScalarProperty Name="Service" ColumnName="Service" />
+          <ScalarProperty Name="BusinessLineId" ColumnName="BusinessLineId" />
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="DiaryTemplateId" ColumnName="DiaryTemplateId" />
+          <ScalarProperty Name="IsBilled" ColumnName="IsBilled" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="ClientCodeDescription" ColumnName="ClientCodeDescription" />
+          <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
+          <ScalarProperty Name="EmployeeRef" ColumnName="EmployeeRef" />
+          <ScalarProperty Name="LeadContractor" ColumnName="LeadContractor" />
+          <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+          <ScalarProperty Name="SiteAddress" ColumnName="SiteAddress" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobDate" ColumnName="JobDate" />
+          <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+          <ScalarProperty Name="Contractor" ColumnName="Contractor" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+          <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+          <ScalarProperty Name="BillableQuantity" ColumnName="BillableQuantity" />
+          <ScalarProperty Name="CompanyVehicle" ColumnName="CompanyVehicle" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="DutyId" ColumnName="DutyId" />
+          <ScalarProperty Name="JobLogId" ColumnName="JobLogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CM_Config">
+      <EntityTypeMapping TypeName="ContractorManagementModel.CM_Config">
+        <MappingFragment StoreEntitySet="CM_Config">
+          <ScalarProperty Name="SeparateLateJobsInExport" ColumnName="SeparateLateJobsInExport" />
+          <ScalarProperty Name="BillingExportOrder" ColumnName="BillingExportOrder" />
+          <ScalarProperty Name="CreateTeamsOnTheFly" ColumnName="CreateTeamsOnTheFly" />
+          <ScalarProperty Name="HFCTicketNoMinLength" ColumnName="HFCTicketNoMinLength" />
+          <ScalarProperty Name="HFCTicketNumberFormat" ColumnName="HFCTicketNumberFormat" />
+          <ScalarProperty Name="SecondaryContractorsOrgUnitId" ColumnName="SecondaryContractorsOrgUnitId" />
+          <ScalarProperty Name="PrimaryContractorsOrgUnitId" ColumnName="PrimaryContractorsOrgUnitId" />
+          <ScalarProperty Name="MaxDaysInTheBack" ColumnName="MaxDaysInTheBack" />
+          <ScalarProperty Name="EnabledJobTimes" ColumnName="EnabledJobTimes" />
+          <ScalarProperty Name="RequireJobTimes" ColumnName="RequireJobTimes" />
+          <ScalarProperty Name="TicketNoMinLength" ColumnName="TicketNoMinLength" />
+          <ScalarProperty Name="TicketNumberFormat" ColumnName="TicketNumberFormat" />
+          <ScalarProperty Name="OrgUnitName" ColumnName="OrgUnitName" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CM_DiaryTemplate">
+      <EntityTypeMapping TypeName="ContractorManagementModel.CM_DiaryTemplate">
+        <MappingFragment StoreEntitySet="CM_DiaryTemplate">
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="SaveAs" ColumnName="SaveAs" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DiaryTemplateId" ColumnName="DiaryTemplateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImportedTransactionsViews">
+      <EntityTypeMapping TypeName="ContractorManagementModel.ImportedTransactionsView">
+        <MappingFragment StoreEntitySet="ImportedTransactionsView">
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="BusinessLineId" ColumnName="BusinessLineId" />
+          <ScalarProperty Name="RecoveryDate" ColumnName="RecoveryDate" />
+          <ScalarProperty Name="RecoveredBy" ColumnName="RecoveredBy" />
+          <ScalarProperty Name="DifferenceRecovered" ColumnName="DifferenceRecovered" />
+          <ScalarProperty Name="ReferencedDateColumn" ColumnName="ReferencedDateColumn" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="TransactionImportAccountNoId" ColumnName="TransactionImportAccountNoId" />
+          <ScalarProperty Name="DateExported" ColumnName="DateExported" />
+          <ScalarProperty Name="ExportedBy" ColumnName="ExportedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+          <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+          <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+          <ScalarProperty Name="ReferencedColumn" ColumnName="ReferencedColumn" />
+          <ScalarProperty Name="SelectedStartRow" ColumnName="SelectedStartRow" />
+          <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+          <ScalarProperty Name="SheetName" ColumnName="SheetName" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="TransactionImportId" ColumnName="TransactionImportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemSecurityConfigurations">
+      <EntityTypeMapping TypeName="ContractorManagementModel.SystemSecurityConfiguration">
+        <MappingFragment StoreEntitySet="SystemSecurityConfiguration">
+          <ScalarProperty Name="AutoLogOutMinutes" ColumnName="AutoLogOutMinutes" />
+          <ScalarProperty Name="EnableAutoLogOut" ColumnName="EnableAutoLogOut" />
+          <ScalarProperty Name="SystemSecurityConfigurationId" ColumnName="SystemSecurityConfigurationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUserSettings">
+      <EntityTypeMapping TypeName="ContractorManagementModel.SystemUserSetting">
+        <MappingFragment StoreEntitySet="SystemUserSettings">
+          <ScalarProperty Name="MdiParentImage" ColumnName="MdiParentImage" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUserViews">
+      <EntityTypeMapping TypeName="ContractorManagementModel.SystemUserView">
+        <MappingFragment StoreEntitySet="SystemUserView">
+          <ScalarProperty Name="AccountExpirationDate" ColumnName="AccountExpirationDate" />
+          <ScalarProperty Name="NodeControlName" ColumnName="NodeControlName" />
+          <ScalarProperty Name="NodeDescription" ColumnName="NodeDescription" />
+          <ScalarProperty Name="ControlName" ColumnName="ControlName" />
+          <ScalarProperty Name="MenuDescription" ColumnName="MenuDescription" />
+          <ScalarProperty Name="RequireUserChange" ColumnName="RequireUserChange" />
+          <ScalarProperty Name="ActivePeriod" ColumnName="ActivePeriod" />
+          <ScalarProperty Name="AccountExpirable" ColumnName="AccountExpirable" />
+          <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="MenuNodesId" ColumnName="MenuNodesId" />
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUsers">
+      <EntityTypeMapping TypeName="ContractorManagementModel.SystemUser">
+        <MappingFragment StoreEntitySet="SystemUsers">
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="CurrentlyLoggedIn" ColumnName="CurrentlyLoggedIn" />
+          <ScalarProperty Name="RequireUserChange" ColumnName="RequireUserChange" />
+          <ScalarProperty Name="ActivePeriod" ColumnName="ActivePeriod" />
+          <ScalarProperty Name="AccountExpirable" ColumnName="AccountExpirable" />
+          <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CM_Adjustment">
+      <EntityTypeMapping TypeName="ContractorManagementModel.CM_Adjustment">
+        <MappingFragment StoreEntitySet="CM_Adjustment">
+          <ScalarProperty Name="AdjustmentDate" ColumnName="AdjustmentDate" />
+          <ScalarProperty Name="AdjustmentNote" ColumnName="AdjustmentNote" />
+          <ScalarProperty Name="AdjustmentAmount" ColumnName="AdjustmentAmount" />
+          <ScalarProperty Name="AdjustmentTypeId" ColumnName="AdjustmentTypeId" />
+          <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+          <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+          <ScalarProperty Name="JobLogId" ColumnName="JobLogId" />
+          <ScalarProperty Name="AdjustmentId" ColumnName="AdjustmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CM_AdjustmentType">
+      <EntityTypeMapping TypeName="ContractorManagementModel.CM_AdjustmentType">
+        <MappingFragment StoreEntitySet="CM_AdjustmentType">
+          <ScalarProperty Name="PayrollCode" ColumnName="PayrollCode" />
+          <ScalarProperty Name="Reduction" ColumnName="Reduction" />
+          <ScalarProperty Name="AdjustmentType" ColumnName="AdjustmentType" />
+          <ScalarProperty Name="AdjustmentTypeId" ColumnName="AdjustmentTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobLogDetailsViews">
+      <EntityTypeMapping TypeName="ContractorManagementModel.JobLogDetailsView">
+        <MappingFragment StoreEntitySet="JobLogDetailsView">
+          <ScalarProperty Name="AdjustmentId" ColumnName="AdjustmentId" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+          <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
+          <ScalarProperty Name="PayrollCode" ColumnName="PayrollCode" />
+          <ScalarProperty Name="EmployeeRef" ColumnName="EmployeeRef" />
+          <ScalarProperty Name="LeadContractor" ColumnName="LeadContractor" />
+          <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+          <ScalarProperty Name="SiteAddress" ColumnName="SiteAddress" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobDate" ColumnName="JobDate" />
+          <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+          <ScalarProperty Name="Contractor" ColumnName="Contractor" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+          <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+          <ScalarProperty Name="BillableQuantity" ColumnName="BillableQuantity" />
+          <ScalarProperty Name="CompanyVehicle" ColumnName="CompanyVehicle" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="DutyId" ColumnName="DutyId" />
+          <ScalarProperty Name="JobLogId" ColumnName="JobLogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CM_BusinessLine">
+      <EntityTypeMapping TypeName="ContractorManagementModel.CM_BusinessLine">
+        <MappingFragment StoreEntitySet="CM_BusinessLine">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="BusinessLineDescription" ColumnName="BusinessLineDescription" />
+          <ScalarProperty Name="BusinessLineId" ColumnName="BusinessLineId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegionViews">
+      <EntityTypeMapping TypeName="ContractorManagementModel.RegionView">
+        <MappingFragment StoreEntitySet="RegionView">
+          <ScalarProperty Name="RegionDescription" ColumnName="RegionDescription" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CM_ClientCode">
+      <EntityTypeMapping TypeName="ContractorManagementModel.CM_ClientCode">
+        <MappingFragment StoreEntitySet="CM_ClientCode">
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ExcludeFromBill" ColumnName="ExcludeFromBill" />
+          <ScalarProperty Name="DiaryTemplateId" ColumnName="DiaryTemplateId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ClientCodeId" ColumnName="ClientCodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

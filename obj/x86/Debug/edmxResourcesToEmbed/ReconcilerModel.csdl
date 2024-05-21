@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ContractorManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CM_PayrollConfig">
+    <Key>
+      <PropertyRef Name="PayrollConfigId" />
+    </Key>
+    <Property Name="PayrollConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PayrollYear" Type="Int32" Nullable="false" />
+    <Property Name="PayrollPeriod" Type="Int32" Nullable="false" />
+    <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CloseDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastModifiedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ContractorManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CM_PayrollConfig" EntityType="Self.CM_PayrollConfig" />
+    <EntitySet Name="TransactionImports" EntityType="ContractorManagementModel.TransactionImport" />
+    <EntitySet Name="TransactionImportAccountNoes" EntityType="ContractorManagementModel.TransactionImportAccountNo" />
+    <AssociationSet Name="FK_TransactionImportAccountNo_TransactionImport" Association="ContractorManagementModel.FK_TransactionImportAccountNo_TransactionImport">
+      <End Role="TransactionImport" EntitySet="TransactionImports" />
+      <End Role="TransactionImportAccountNo" EntitySet="TransactionImportAccountNoes" />
+    </AssociationSet>
+    <EntitySet Name="ClientBillingInfoViews" EntityType="ContractorManagementModel.ClientBillingInfoView" />
+    <EntitySet Name="CM_Config" EntityType="ContractorManagementModel.CM_Config" />
+    <EntitySet Name="CM_DiaryTemplate" EntityType="ContractorManagementModel.CM_DiaryTemplate" />
+    <EntitySet Name="ImportedTransactionsViews" EntityType="ContractorManagementModel.ImportedTransactionsView" />
+    <EntitySet Name="SystemSecurityConfigurations" EntityType="ContractorManagementModel.SystemSecurityConfiguration" />
+    <EntitySet Name="SystemUserSettings" EntityType="ContractorManagementModel.SystemUserSetting" />
+    <EntitySet Name="SystemUserViews" EntityType="ContractorManagementModel.SystemUserView" />
+    <EntitySet Name="SystemUsers" EntityType="ContractorManagementModel.SystemUser" />
+    <EntitySet Name="CM_Adjustment" EntityType="ContractorManagementModel.CM_Adjustment" />
+    <EntitySet Name="CM_AdjustmentType" EntityType="ContractorManagementModel.CM_AdjustmentType" />
+    <EntitySet Name="JobLogDetailsViews" EntityType="ContractorManagementModel.JobLogDetailsView" />
+    <EntitySet Name="CM_BusinessLine" EntityType="ContractorManagementModel.CM_BusinessLine" />
+    <EntitySet Name="RegionViews" EntityType="ContractorManagementModel.RegionView" />
+    <EntitySet Name="CM_ClientCode" EntityType="ContractorManagementModel.CM_ClientCode" />
+  </EntityContainer>
+  <EntityType Name="TransactionImport">
+    <Key>
+      <PropertyRef Name="TransactionImportId" />
+    </Key>
+    <Property Name="TransactionImportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SheetName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RecordCount" Type="Int32" Nullable="false" />
+    <Property Name="SelectedStartRow" Type="Int32" Nullable="false" />
+    <Property Name="ReferencedColumn" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="PayrollYear" Type="Int32" Nullable="false" />
+    <Property Name="PayrollPeriod" Type="Int32" Nullable="false" />
+    <Property Name="IsExported" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExportedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DateExported" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TransactionImportAccountNoes" Relationship="ContractorManagementModel.FK_TransactionImportAccountNo_TransactionImport" FromRole="TransactionImport" ToRole="TransactionImportAccountNo" />
+    <Property Name="DifferenceRecovered" Type="Boolean" Nullable="false" />
+    <Property Name="RecoveredBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="RecoveryDate" Type="DateTime" Precision="3" />
+    <Property Name="ReferencedDateColumn" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="BusinessLineId" Type="Int32" Nullable="false" />
+    <Property Name="RegionId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionImportAccountNo">
+    <Key>
+      <PropertyRef Name="TransactionImportAccountNoId" />
+    </Key>
+    <Property Name="TransactionImportAccountNoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionImportId" Type="Int32" Nullable="false" />
+    <Property Name="JobNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="TransactionImport" Relationship="ContractorManagementModel.FK_TransactionImportAccountNo_TransactionImport" FromRole="TransactionImportAccountNo" ToRole="TransactionImport" />
+    <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_TransactionImportAccountNo_TransactionImport">
+    <End Type="ContractorManagementModel.TransactionImport" Role="TransactionImport" Multiplicity="1" />
+    <End Type="ContractorManagementModel.TransactionImportAccountNo" Role="TransactionImportAccountNo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionImport">
+        <PropertyRef Name="TransactionImportId" />
+      </Principal>
+      <Dependent Role="TransactionImportAccountNo">
+        <PropertyRef Name="TransactionImportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ClientBillingInfoView">
+    <Key>
+      <PropertyRef Name="JobLogId" />
+      <PropertyRef Name="DutyId" />
+      <PropertyRef Name="TeamId" />
+      <PropertyRef Name="CompanyVehicle" />
+      <PropertyRef Name="BillableQuantity" />
+      <PropertyRef Name="PayrollPeriod" />
+      <PropertyRef Name="PayrollYear" />
+      <PropertyRef Name="EmployeeId" />
+      <PropertyRef Name="Rate" />
+      <PropertyRef Name="TicketNo" />
+      <PropertyRef Name="JobDate" />
+      <PropertyRef Name="JobDescription" />
+      <PropertyRef Name="SiteAddress" />
+      <PropertyRef Name="TelephoneNo" />
+      <PropertyRef Name="LeadContractor" />
+      <PropertyRef Name="EmployeeRef" />
+      <PropertyRef Name="DutyCode" />
+      <PropertyRef Name="ClientCodeDescription" />
+      <PropertyRef Name="Region" />
+      <PropertyRef Name="DiaryTemplateId" />
+      <PropertyRef Name="RegionId" />
+      <PropertyRef Name="BusinessLineId" />
+      <PropertyRef Name="Service" />
+      <PropertyRef Name="QA100" />
+      <PropertyRef Name="WRK" />
+      <PropertyRef Name="RG6M" />
+      <PropertyRef Name="RG6l" />
+      <PropertyRef Name="RG11" />
+      <PropertyRef Name="AMPS" />
+      <PropertyRef Name="SPLIT" />
+      <PropertyRef Name="CustomerName" />
+      <PropertyRef Name="ServiceOrderNo" />
+    </Key>
+    <Property Name="JobLogId" Type="Int32" Nullable="false" />
+    <Property Name="DutyId" Type="Int32" Nullable="false" />
+    <Property Name="TeamId" Type="Int32" Nullable="false" />
+    <Property Name="CompanyVehicle" Type="Boolean" Nullable="false" />
+    <Property Name="BillableQuantity" Type="Int32" Nullable="false" />
+    <Property Name="PayrollPeriod" Type="Byte" Nullable="false" />
+    <Property Name="PayrollYear" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="Rate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Contractor" Type="String" MaxLength="121" FixedLength="false" Unicode="false" />
+    <Property Name="TicketNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="JobDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="JobDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SiteAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TelephoneNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="LeadContractor" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeRef" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DutyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="ClientCodeDescription" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Region" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Precision="23" Scale="4" />
+    <Property Name="IsBilled" Type="Boolean" />
+    <Property Name="DiaryTemplateId" Type="Int32" Nullable="false" />
+    <Property Name="RegionId" Type="Int16" Nullable="false" />
+    <Property Name="BusinessLineId" Type="Int32" Nullable="false" />
+    <Property Name="Service" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="QA100" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="WRK" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="RG6M" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="RG6l" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="RG11" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="AMPS" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="SPLIT" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="ServiceOrderNo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CM_Config">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+      <PropertyRef Name="OrgUnitName" />
+      <PropertyRef Name="TicketNumberFormat" />
+      <PropertyRef Name="TicketNoMinLength" />
+      <PropertyRef Name="RequireJobTimes" />
+      <PropertyRef Name="EnabledJobTimes" />
+      <PropertyRef Name="MaxDaysInTheBack" />
+      <PropertyRef Name="PrimaryContractorsOrgUnitId" />
+      <PropertyRef Name="SecondaryContractorsOrgUnitId" />
+      <PropertyRef Name="CreateTeamsOnTheFly" />
+      <PropertyRef Name="BillingExportOrder" />
+      <PropertyRef Name="SeparateLateJobsInExport" />
+    </Key>
+    <Property Name="CompanyId" Type="Int16" Nullable="false" />
+    <Property Name="OrgUnitName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="TicketNumberFormat" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="TicketNoMinLength" Type="Byte" Nullable="false" />
+    <Property Name="RequireJobTimes" Type="Boolean" Nullable="false" />
+    <Property Name="EnabledJobTimes" Type="Boolean" Nullable="false" />
+    <Property Name="MaxDaysInTheBack" Type="Int16" Nullable="false" />
+    <Property Name="PrimaryContractorsOrgUnitId" Type="Int16" Nullable="false" />
+    <Property Name="SecondaryContractorsOrgUnitId" Type="Int16" Nullable="false" />
+    <Property Name="HFCTicketNumberFormat" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="HFCTicketNoMinLength" Type="Byte" />
+    <Property Name="CreateTeamsOnTheFly" Type="Boolean" Nullable="false" />
+    <Property Name="BillingExportOrder" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="SeparateLateJobsInExport" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CM_DiaryTemplate">
+    <Key>
+      <PropertyRef Name="DiaryTemplateId" />
+    </Key>
+    <Property Name="DiaryTemplateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SaveAs" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ImportedTransactionsView">
+    <Key>
+      <PropertyRef Name="TransactionImportId" />
+      <PropertyRef Name="FileName" />
+      <PropertyRef Name="SheetName" />
+      <PropertyRef Name="RecordCount" />
+      <PropertyRef Name="SelectedStartRow" />
+      <PropertyRef Name="ReferencedColumn" />
+      <PropertyRef Name="PayrollYear" />
+      <PropertyRef Name="PayrollPeriod" />
+      <PropertyRef Name="IsExported" />
+      <PropertyRef Name="CreatedBy" />
+      <PropertyRef Name="DateCreated" />
+      <PropertyRef Name="TransactionImportAccountNoId" />
+      <PropertyRef Name="JobNumber" />
+      <PropertyRef Name="ReferencedDateColumn" />
+      <PropertyRef Name="DifferenceRecovered" />
+      <PropertyRef Name="BusinessLineId" />
+      <PropertyRef Name="RegionId" />
+    </Key>
+    <Property Name="TransactionImportId" Type="Int32" Nullable="false" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SheetName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RecordCount" Type="Int32" Nullable="false" />
+    <Property Name="SelectedStartRow" Type="Int32" Nullable="false" />
+    <Property Name="ReferencedColumn" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="PayrollYear" Type="Int32" Nullable="false" />
+    <Property Name="PayrollPeriod" Type="Int32" Nullable="false" />
+    <Property Name="IsExported" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExportedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DateExported" Type="DateTime" Precision="3" />
+    <Property Name="TransactionImportAccountNoId" Type="Int32" Nullable="false" />
+    <Property Name="JobNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+    <Property Name="ReferencedDateColumn" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="DifferenceRecovered" Type="Boolean" Nullable="false" />
+    <Property Name="RecoveredBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="RecoveryDate" Type="DateTime" Precision="3" />
+    <Property Name="BusinessLineId" Type="Int32" Nullable="false" />
+    <Property Name="RegionId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemSecurityConfiguration">
+    <Key>
+      <PropertyRef Name="SystemSecurityConfigurationId" />
+    </Key>
+    <Property Name="SystemSecurityConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnableAutoLogOut" Type="Boolean" Nullable="false" />
+    <Property Name="AutoLogOutMinutes" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemUserSetting">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="MdiParentImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SystemUserView">
+    <Key>
+      <PropertyRef Name="SystemUserId" />
+      <PropertyRef Name="MenuId" />
+      <PropertyRef Name="MenuNodesId" />
+      <PropertyRef Name="LastModifiedDate" />
+      <PropertyRef Name="LastModifiedBy" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="AccountExpirable" />
+      <PropertyRef Name="RequireUserChange" />
+      <PropertyRef Name="MenuDescription" />
+      <PropertyRef Name="ControlName" />
+      <PropertyRef Name="NodeDescription" />
+      <PropertyRef Name="NodeControlName" />
+    </Key>
+    <Property Name="SystemUserId" Type="Int32" Nullable="false" />
+    <Property Name="MenuId" Type="Int32" Nullable="false" />
+    <Property Name="MenuNodesId" Type="Int32" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="AccountExpirable" Type="Boolean" Nullable="false" />
+    <Property Name="ActivePeriod" Type="Int32" />
+    <Property Name="RequireUserChange" Type="Boolean" Nullable="false" />
+    <Property Name="MenuDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ControlName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NodeDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NodeControlName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SystemUser">
+    <Key>
+      <PropertyRef Name="SystemUserId" />
+    </Key>
+    <Property Name="SystemUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="AccountExpirable" Type="Boolean" Nullable="false" />
+    <Property Name="ActivePeriod" Type="Int32" />
+    <Property Name="RequireUserChange" Type="Boolean" Nullable="false" />
+    <Property Name="CurrentlyLoggedIn" Type="Boolean" />
+    <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CM_Adjustment">
+    <Key>
+      <PropertyRef Name="AdjustmentId" />
+    </Key>
+    <Property Name="AdjustmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobLogId" Type="Int32" Nullable="false" />
+    <Property Name="PayrollPeriod" Type="Byte" Nullable="false" />
+    <Property Name="PayrollYear" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="AdjustmentTypeId" Type="Int16" Nullable="false" />
+    <Property Name="AdjustmentAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="AdjustmentNote" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AdjustmentDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="CM_AdjustmentType">
+    <Key>
+      <PropertyRef Name="AdjustmentTypeId" />
+    </Key>
+    <Property Name="AdjustmentTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdjustmentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Reduction" Type="Boolean" Nullable="false" />
+    <Property Name="PayrollCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="JobLogDetailsView">
+    <Key>
+      <PropertyRef Name="JobLogId" />
+      <PropertyRef Name="DutyId" />
+      <PropertyRef Name="TeamId" />
+      <PropertyRef Name="CompanyVehicle" />
+      <PropertyRef Name="BillableQuantity" />
+      <PropertyRef Name="PayrollPeriod" />
+      <PropertyRef Name="PayrollYear" />
+      <PropertyRef Name="EmployeeId" />
+      <PropertyRef Name="TicketNo" />
+      <PropertyRef Name="JobDate" />
+      <PropertyRef Name="JobDescription" />
+      <PropertyRef Name="SiteAddress" />
+      <PropertyRef Name="TelephoneNo" />
+      <PropertyRef Name="LeadContractor" />
+      <PropertyRef Name="EmployeeRef" />
+      <PropertyRef Name="DutyCode" />
+      <PropertyRef Name="Region" />
+      <PropertyRef Name="AdjustmentId" />
+    </Key>
+    <Property Name="JobLogId" Type="Int32" Nullable="false" />
+    <Property Name="DutyId" Type="Int32" Nullable="false" />
+    <Property Name="TeamId" Type="Int32" Nullable="false" />
+    <Property Name="CompanyVehicle" Type="Boolean" Nullable="false" />
+    <Property Name="BillableQuantity" Type="Decimal" Nullable="false" Precision="14" Scale="4" />
+    <Property Name="PayrollPeriod" Type="Byte" Nullable="false" />
+    <Property Name="PayrollYear" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="Rate" Type="Decimal" Precision="38" Scale="11" />
+    <Property Name="Contractor" Type="String" MaxLength="132" FixedLength="false" Unicode="false" />
+    <Property Name="TicketNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="JobDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="JobDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SiteAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TelephoneNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="LeadContractor" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeRef" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PayrollCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DutyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="IsExported" Type="Boolean" />
+    <Property Name="Region" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="AdjustmentId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CM_BusinessLine">
+    <Key>
+      <PropertyRef Name="BusinessLineId" />
+    </Key>
+    <Property Name="BusinessLineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BusinessLineDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegionView">
+    <Key>
+      <PropertyRef Name="RegionId" />
+      <PropertyRef Name="CompanyId" />
+      <PropertyRef Name="Region" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="RegionId" Type="Int16" Nullable="false" />
+    <Property Name="CompanyId" Type="Int16" Nullable="false" />
+    <Property Name="Region" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RegionDescription" Type="String" MaxLength="73" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CM_ClientCode">
+    <Key>
+      <PropertyRef Name="ClientCodeId" />
+    </Key>
+    <Property Name="ClientCodeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DiaryTemplateId" Type="Int32" Nullable="false" />
+    <Property Name="ExcludeFromBill" Type="Boolean" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

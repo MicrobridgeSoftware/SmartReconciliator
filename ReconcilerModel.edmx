@@ -1,0 +1,1295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ContractorManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CM_Adjustment">
+          <Key>
+            <PropertyRef Name="AdjustmentId" />
+          </Key>
+          <Property Name="AdjustmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobLogId" Type="int" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="tinyint" Nullable="false" />
+          <Property Name="PayrollYear" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="AdjustmentTypeId" Type="smallint" Nullable="false" />
+          <Property Name="AdjustmentAmount" Type="money" Nullable="false" />
+          <Property Name="AdjustmentNote" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="AdjustmentDate" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CM_AdjustmentType">
+          <Key>
+            <PropertyRef Name="AdjustmentTypeId" />
+          </Key>
+          <Property Name="AdjustmentTypeId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdjustmentType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Reduction" Type="bit" Nullable="false" />
+          <Property Name="PayrollCode" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CM_BusinessLine">
+          <Key>
+            <PropertyRef Name="BusinessLineId" />
+          </Key>
+          <Property Name="BusinessLineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusinessLineDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CM_ClientCode">
+          <Key>
+            <PropertyRef Name="ClientCodeId" />
+          </Key>
+          <Property Name="ClientCodeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DiaryTemplateId" Type="int" Nullable="false" />
+          <Property Name="ExcludeFromBill" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ContractorManagement.dbo.CM.Config' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CM_Config">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="OrgUnitName" />
+            <PropertyRef Name="TicketNumberFormat" />
+            <PropertyRef Name="TicketNoMinLength" />
+            <PropertyRef Name="RequireJobTimes" />
+            <PropertyRef Name="EnabledJobTimes" />
+            <PropertyRef Name="MaxDaysInTheBack" />
+            <PropertyRef Name="PrimaryContractorsOrgUnitId" />
+            <PropertyRef Name="SecondaryContractorsOrgUnitId" />
+            <PropertyRef Name="CreateTeamsOnTheFly" />
+            <PropertyRef Name="BillingExportOrder" />
+            <PropertyRef Name="SeparateLateJobsInExport" />
+          </Key>
+          <Property Name="CompanyId" Type="smallint" Nullable="false" />
+          <Property Name="OrgUnitName" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TicketNumberFormat" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="TicketNoMinLength" Type="tinyint" Nullable="false" />
+          <Property Name="RequireJobTimes" Type="bit" Nullable="false" />
+          <Property Name="EnabledJobTimes" Type="bit" Nullable="false" />
+          <Property Name="MaxDaysInTheBack" Type="smallint" Nullable="false" />
+          <Property Name="PrimaryContractorsOrgUnitId" Type="smallint" Nullable="false" />
+          <Property Name="SecondaryContractorsOrgUnitId" Type="smallint" Nullable="false" />
+          <Property Name="HFCTicketNumberFormat" Type="char" MaxLength="15" />
+          <Property Name="HFCTicketNoMinLength" Type="tinyint" />
+          <Property Name="CreateTeamsOnTheFly" Type="bit" Nullable="false" />
+          <Property Name="BillingExportOrder" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="SeparateLateJobsInExport" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CM_DiaryTemplate">
+          <Key>
+            <PropertyRef Name="DiaryTemplateId" />
+          </Key>
+          <Property Name="DiaryTemplateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SaveAs" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CM_PayrollConfig">
+          <Key>
+            <PropertyRef Name="PayrollConfigId" />
+          </Key>
+          <Property Name="PayrollConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PayrollYear" Type="int" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="int" Nullable="false" />
+          <Property Name="OpenDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="CloseDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemSecurityConfiguration">
+          <Key>
+            <PropertyRef Name="SystemSecurityConfigurationId" />
+          </Key>
+          <Property Name="SystemSecurityConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnableAutoLogOut" Type="bit" Nullable="false" />
+          <Property Name="AutoLogOutMinutes" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemUsers">
+          <Key>
+            <PropertyRef Name="SystemUserId" />
+          </Key>
+          <Property Name="SystemUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="25" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserImage" Type="image" />
+          <Property Name="AccountExpirable" Type="bit" Nullable="false" />
+          <Property Name="ActivePeriod" Type="int" />
+          <Property Name="RequireUserChange" Type="bit" Nullable="false" />
+          <Property Name="CurrentlyLoggedIn" Type="bit" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SystemUserSettings">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="MdiParentImage" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionImport">
+          <Key>
+            <PropertyRef Name="TransactionImportId" />
+          </Key>
+          <Property Name="TransactionImportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SheetName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordCount" Type="int" Nullable="false" />
+          <Property Name="SelectedStartRow" Type="int" Nullable="false" />
+          <Property Name="ReferencedColumn" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ReferencedDateColumn" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="PayrollYear" Type="int" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="int" Nullable="false" />
+          <Property Name="IsExported" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="ExportedBy" Type="varchar" MaxLength="25" />
+          <Property Name="DateExported" Type="datetime" />
+          <Property Name="DifferenceRecovered" Type="bit" Nullable="false" />
+          <Property Name="RecoveredBy" Type="varchar" MaxLength="25" />
+          <Property Name="RecoveryDate" Type="datetime" />
+          <Property Name="BusinessLineId" Type="int" Nullable="false" />
+          <Property Name="RegionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionImportAccountNo">
+          <Key>
+            <PropertyRef Name="TransactionImportAccountNoId" />
+          </Key>
+          <Property Name="TransactionImportAccountNoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionImportId" Type="int" Nullable="false" />
+          <Property Name="JobNumber" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ContractorManagement.dbo.ClientBillingInfoView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ClientBillingInfoView">
+          <Key>
+            <PropertyRef Name="JobLogId" />
+            <PropertyRef Name="DutyId" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="CompanyVehicle" />
+            <PropertyRef Name="BillableQuantity" />
+            <PropertyRef Name="PayrollPeriod" />
+            <PropertyRef Name="PayrollYear" />
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="TicketNo" />
+            <PropertyRef Name="JobDate" />
+            <PropertyRef Name="JobDescription" />
+            <PropertyRef Name="SiteAddress" />
+            <PropertyRef Name="TelephoneNo" />
+            <PropertyRef Name="LeadContractor" />
+            <PropertyRef Name="EmployeeRef" />
+            <PropertyRef Name="DutyCode" />
+            <PropertyRef Name="ClientCodeDescription" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="DiaryTemplateId" />
+            <PropertyRef Name="RegionId" />
+            <PropertyRef Name="BusinessLineId" />
+            <PropertyRef Name="Service" />
+            <PropertyRef Name="QA100" />
+            <PropertyRef Name="WRK" />
+            <PropertyRef Name="RG6M" />
+            <PropertyRef Name="RG6l" />
+            <PropertyRef Name="RG11" />
+            <PropertyRef Name="AMPS" />
+            <PropertyRef Name="SPLIT" />
+            <PropertyRef Name="CustomerName" />
+            <PropertyRef Name="ServiceOrderNo" />
+          </Key>
+          <Property Name="JobLogId" Type="int" Nullable="false" />
+          <Property Name="DutyId" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="CompanyVehicle" Type="bit" Nullable="false" />
+          <Property Name="BillableQuantity" Type="int" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="tinyint" Nullable="false" />
+          <Property Name="PayrollYear" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Contractor" Type="varchar" MaxLength="121" />
+          <Property Name="TicketNo" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="JobDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="JobDescription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="SiteAddress" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TelephoneNo" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="LeadContractor" Type="int" Nullable="false" />
+          <Property Name="EmployeeRef" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DutyCode" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ClientCodeDescription" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Region" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="23" Scale="4" />
+          <Property Name="IsBilled" Type="bit" />
+          <Property Name="DiaryTemplateId" Type="int" Nullable="false" />
+          <Property Name="RegionId" Type="smallint" Nullable="false" />
+          <Property Name="BusinessLineId" Type="int" Nullable="false" />
+          <Property Name="Service" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="QA100" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="WRK" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="RG6M" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RG6l" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RG11" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="AMPS" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SPLIT" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CustomerName" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="ServiceOrderNo" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ContractorManagement.dbo.ImportedTransactionsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ImportedTransactionsView">
+          <Key>
+            <PropertyRef Name="TransactionImportId" />
+            <PropertyRef Name="FileName" />
+            <PropertyRef Name="SheetName" />
+            <PropertyRef Name="RecordCount" />
+            <PropertyRef Name="SelectedStartRow" />
+            <PropertyRef Name="ReferencedColumn" />
+            <PropertyRef Name="PayrollYear" />
+            <PropertyRef Name="PayrollPeriod" />
+            <PropertyRef Name="IsExported" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="TransactionImportAccountNoId" />
+            <PropertyRef Name="JobNumber" />
+            <PropertyRef Name="ReferencedDateColumn" />
+            <PropertyRef Name="DifferenceRecovered" />
+            <PropertyRef Name="BusinessLineId" />
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="TransactionImportId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SheetName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordCount" Type="int" Nullable="false" />
+          <Property Name="SelectedStartRow" Type="int" Nullable="false" />
+          <Property Name="ReferencedColumn" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="PayrollYear" Type="int" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="int" Nullable="false" />
+          <Property Name="IsExported" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="ExportedBy" Type="varchar" MaxLength="25" />
+          <Property Name="DateExported" Type="datetime" />
+          <Property Name="TransactionImportAccountNoId" Type="int" Nullable="false" />
+          <Property Name="JobNumber" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="ReferencedDateColumn" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="DifferenceRecovered" Type="bit" Nullable="false" />
+          <Property Name="RecoveredBy" Type="varchar" MaxLength="25" />
+          <Property Name="RecoveryDate" Type="datetime" />
+          <Property Name="BusinessLineId" Type="int" Nullable="false" />
+          <Property Name="RegionId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ContractorManagement.dbo.JobLogDetailsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="JobLogDetailsView">
+          <Key>
+            <PropertyRef Name="JobLogId" />
+            <PropertyRef Name="DutyId" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="CompanyVehicle" />
+            <PropertyRef Name="BillableQuantity" />
+            <PropertyRef Name="PayrollPeriod" />
+            <PropertyRef Name="PayrollYear" />
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="TicketNo" />
+            <PropertyRef Name="JobDate" />
+            <PropertyRef Name="JobDescription" />
+            <PropertyRef Name="SiteAddress" />
+            <PropertyRef Name="TelephoneNo" />
+            <PropertyRef Name="LeadContractor" />
+            <PropertyRef Name="EmployeeRef" />
+            <PropertyRef Name="DutyCode" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="AdjustmentId" />
+          </Key>
+          <Property Name="JobLogId" Type="int" Nullable="false" />
+          <Property Name="DutyId" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="CompanyVehicle" Type="bit" Nullable="false" />
+          <Property Name="BillableQuantity" Type="decimal" Precision="14" Scale="4" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="tinyint" Nullable="false" />
+          <Property Name="PayrollYear" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="38" Scale="11" />
+          <Property Name="Contractor" Type="varchar" MaxLength="132" />
+          <Property Name="TicketNo" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="JobDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="JobDescription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="SiteAddress" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TelephoneNo" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="LeadContractor" Type="int" Nullable="false" />
+          <Property Name="EmployeeRef" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PayrollCode" Type="varchar" MaxLength="10" />
+          <Property Name="DutyCode" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="IsExported" Type="bit" />
+          <Property Name="Region" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AdjustmentId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ContractorManagement.dbo.RegionView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RegionView">
+          <Key>
+            <PropertyRef Name="RegionId" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Name="RegionId" Type="smallint" Nullable="false" />
+          <Property Name="CompanyId" Type="smallint" Nullable="false" />
+          <Property Name="Region" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegionDescription" Type="varchar" MaxLength="73" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ContractorManagement.dbo.SystemUserView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SystemUserView">
+          <Key>
+            <PropertyRef Name="SystemUserId" />
+            <PropertyRef Name="MenuId" />
+            <PropertyRef Name="MenuNodesId" />
+            <PropertyRef Name="LastModifiedDate" />
+            <PropertyRef Name="LastModifiedBy" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="AccountExpirable" />
+            <PropertyRef Name="RequireUserChange" />
+            <PropertyRef Name="MenuDescription" />
+            <PropertyRef Name="ControlName" />
+            <PropertyRef Name="NodeDescription" />
+            <PropertyRef Name="NodeControlName" />
+          </Key>
+          <Property Name="SystemUserId" Type="int" Nullable="false" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="MenuNodesId" Type="int" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="25" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserImage" Type="image" />
+          <Property Name="AccountExpirable" Type="bit" Nullable="false" />
+          <Property Name="ActivePeriod" Type="int" />
+          <Property Name="RequireUserChange" Type="bit" Nullable="false" />
+          <Property Name="MenuDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ControlName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NodeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NodeControlName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountExpirationDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_TransactionImportAccountNo_TransactionImport">
+          <End Role="TransactionImport" Type="Self.TransactionImport" Multiplicity="1" />
+          <End Role="TransactionImportAccountNo" Type="Self.TransactionImportAccountNo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionImport">
+              <PropertyRef Name="TransactionImportId" />
+            </Principal>
+            <Dependent Role="TransactionImportAccountNo">
+              <PropertyRef Name="TransactionImportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ContractorManagementModelStoreContainer">
+          <EntitySet Name="CM_Adjustment" EntityType="Self.CM_Adjustment" Schema="dbo" Table="CM.Adjustment" store:Type="Tables" />
+          <EntitySet Name="CM_AdjustmentType" EntityType="Self.CM_AdjustmentType" Schema="dbo" Table="CM.AdjustmentType" store:Type="Tables" />
+          <EntitySet Name="CM_BusinessLine" EntityType="Self.CM_BusinessLine" Schema="dbo" Table="CM.BusinessLine" store:Type="Tables" />
+          <EntitySet Name="CM_ClientCode" EntityType="Self.CM_ClientCode" Schema="dbo" Table="CM.ClientCode" store:Type="Tables" />
+          <EntitySet Name="CM_DiaryTemplate" EntityType="Self.CM_DiaryTemplate" Schema="dbo" Table="CM.DiaryTemplate" store:Type="Tables" />
+          <EntitySet Name="CM_PayrollConfig" EntityType="Self.CM_PayrollConfig" Schema="dbo" Table="CM.PayrollConfig" store:Type="Tables" />
+          <EntitySet Name="SystemSecurityConfiguration" EntityType="Self.SystemSecurityConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemUsers" EntityType="Self.SystemUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemUserSettings" EntityType="Self.SystemUserSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionImport" EntityType="Self.TransactionImport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionImportAccountNo" EntityType="Self.TransactionImportAccountNo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CM_Config" EntityType="Self.CM_Config" store:Type="Tables" store:Schema="dbo" store:Name="CM.Config">
+            <DefiningQuery>SELECT 
+    [CM_Config].[CompanyId] AS [CompanyId], 
+    [CM_Config].[OrgUnitName] AS [OrgUnitName], 
+    [CM_Config].[TicketNumberFormat] AS [TicketNumberFormat], 
+    [CM_Config].[TicketNoMinLength] AS [TicketNoMinLength], 
+    [CM_Config].[RequireJobTimes] AS [RequireJobTimes], 
+    [CM_Config].[EnabledJobTimes] AS [EnabledJobTimes], 
+    [CM_Config].[MaxDaysInTheBack] AS [MaxDaysInTheBack], 
+    [CM_Config].[PrimaryContractorsOrgUnitId] AS [PrimaryContractorsOrgUnitId], 
+    [CM_Config].[SecondaryContractorsOrgUnitId] AS [SecondaryContractorsOrgUnitId], 
+    [CM_Config].[HFCTicketNumberFormat] AS [HFCTicketNumberFormat], 
+    [CM_Config].[HFCTicketNoMinLength] AS [HFCTicketNoMinLength], 
+    [CM_Config].[CreateTeamsOnTheFly] AS [CreateTeamsOnTheFly], 
+    [CM_Config].[BillingExportOrder] AS [BillingExportOrder], 
+    [CM_Config].[SeparateLateJobsInExport] AS [SeparateLateJobsInExport]
+    FROM [dbo].[CM.Config] AS [CM_Config]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ClientBillingInfoView" EntityType="Self.ClientBillingInfoView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ClientBillingInfoView].[JobLogId] AS [JobLogId], 
+    [ClientBillingInfoView].[DutyId] AS [DutyId], 
+    [ClientBillingInfoView].[TeamId] AS [TeamId], 
+    [ClientBillingInfoView].[CompanyVehicle] AS [CompanyVehicle], 
+    [ClientBillingInfoView].[BillableQuantity] AS [BillableQuantity], 
+    [ClientBillingInfoView].[PayrollPeriod] AS [PayrollPeriod], 
+    [ClientBillingInfoView].[PayrollYear] AS [PayrollYear], 
+    [ClientBillingInfoView].[EmployeeId] AS [EmployeeId], 
+    [ClientBillingInfoView].[Rate] AS [Rate], 
+    [ClientBillingInfoView].[Contractor] AS [Contractor], 
+    [ClientBillingInfoView].[TicketNo] AS [TicketNo], 
+    [ClientBillingInfoView].[JobDate] AS [JobDate], 
+    [ClientBillingInfoView].[JobDescription] AS [JobDescription], 
+    [ClientBillingInfoView].[SiteAddress] AS [SiteAddress], 
+    [ClientBillingInfoView].[TelephoneNo] AS [TelephoneNo], 
+    [ClientBillingInfoView].[LeadContractor] AS [LeadContractor], 
+    [ClientBillingInfoView].[EmployeeRef] AS [EmployeeRef], 
+    [ClientBillingInfoView].[DutyCode] AS [DutyCode], 
+    [ClientBillingInfoView].[ClientCodeDescription] AS [ClientCodeDescription], 
+    [ClientBillingInfoView].[Region] AS [Region], 
+    [ClientBillingInfoView].[Amount] AS [Amount], 
+    [ClientBillingInfoView].[IsBilled] AS [IsBilled], 
+    [ClientBillingInfoView].[DiaryTemplateId] AS [DiaryTemplateId], 
+    [ClientBillingInfoView].[RegionId] AS [RegionId], 
+    [ClientBillingInfoView].[BusinessLineId] AS [BusinessLineId], 
+    [ClientBillingInfoView].[Service] AS [Service], 
+    [ClientBillingInfoView].[QA100] AS [QA100], 
+    [ClientBillingInfoView].[WRK] AS [WRK], 
+    [ClientBillingInfoView].[RG6M] AS [RG6M], 
+    [ClientBillingInfoView].[RG6l] AS [RG6l], 
+    [ClientBillingInfoView].[RG11] AS [RG11], 
+    [ClientBillingInfoView].[AMPS] AS [AMPS], 
+    [ClientBillingInfoView].[SPLIT] AS [SPLIT], 
+    [ClientBillingInfoView].[CustomerName] AS [CustomerName], 
+    [ClientBillingInfoView].[ServiceOrderNo] AS [ServiceOrderNo]
+    FROM [dbo].[ClientBillingInfoView] AS [ClientBillingInfoView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ImportedTransactionsView" EntityType="Self.ImportedTransactionsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ImportedTransactionsView].[TransactionImportId] AS [TransactionImportId], 
+    [ImportedTransactionsView].[FileName] AS [FileName], 
+    [ImportedTransactionsView].[SheetName] AS [SheetName], 
+    [ImportedTransactionsView].[RecordCount] AS [RecordCount], 
+    [ImportedTransactionsView].[SelectedStartRow] AS [SelectedStartRow], 
+    [ImportedTransactionsView].[ReferencedColumn] AS [ReferencedColumn], 
+    [ImportedTransactionsView].[PayrollYear] AS [PayrollYear], 
+    [ImportedTransactionsView].[PayrollPeriod] AS [PayrollPeriod], 
+    [ImportedTransactionsView].[IsExported] AS [IsExported], 
+    [ImportedTransactionsView].[CreatedBy] AS [CreatedBy], 
+    [ImportedTransactionsView].[DateCreated] AS [DateCreated], 
+    [ImportedTransactionsView].[ExportedBy] AS [ExportedBy], 
+    [ImportedTransactionsView].[DateExported] AS [DateExported], 
+    [ImportedTransactionsView].[TransactionImportAccountNoId] AS [TransactionImportAccountNoId], 
+    [ImportedTransactionsView].[JobNumber] AS [JobNumber], 
+    [ImportedTransactionsView].[TransactionDate] AS [TransactionDate], 
+    [ImportedTransactionsView].[ReferencedDateColumn] AS [ReferencedDateColumn], 
+    [ImportedTransactionsView].[DifferenceRecovered] AS [DifferenceRecovered], 
+    [ImportedTransactionsView].[RecoveredBy] AS [RecoveredBy], 
+    [ImportedTransactionsView].[RecoveryDate] AS [RecoveryDate], 
+    [ImportedTransactionsView].[BusinessLineId] AS [BusinessLineId], 
+    [ImportedTransactionsView].[RegionId] AS [RegionId]
+    FROM [dbo].[ImportedTransactionsView] AS [ImportedTransactionsView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="JobLogDetailsView" EntityType="Self.JobLogDetailsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [JobLogDetailsView].[JobLogId] AS [JobLogId], 
+    [JobLogDetailsView].[DutyId] AS [DutyId], 
+    [JobLogDetailsView].[TeamId] AS [TeamId], 
+    [JobLogDetailsView].[CompanyVehicle] AS [CompanyVehicle], 
+    [JobLogDetailsView].[BillableQuantity] AS [BillableQuantity], 
+    [JobLogDetailsView].[PayrollPeriod] AS [PayrollPeriod], 
+    [JobLogDetailsView].[PayrollYear] AS [PayrollYear], 
+    [JobLogDetailsView].[EmployeeId] AS [EmployeeId], 
+    [JobLogDetailsView].[Rate] AS [Rate], 
+    [JobLogDetailsView].[Contractor] AS [Contractor], 
+    [JobLogDetailsView].[TicketNo] AS [TicketNo], 
+    [JobLogDetailsView].[JobDate] AS [JobDate], 
+    [JobLogDetailsView].[JobDescription] AS [JobDescription], 
+    [JobLogDetailsView].[SiteAddress] AS [SiteAddress], 
+    [JobLogDetailsView].[TelephoneNo] AS [TelephoneNo], 
+    [JobLogDetailsView].[LeadContractor] AS [LeadContractor], 
+    [JobLogDetailsView].[EmployeeRef] AS [EmployeeRef], 
+    [JobLogDetailsView].[PayrollCode] AS [PayrollCode], 
+    [JobLogDetailsView].[DutyCode] AS [DutyCode], 
+    [JobLogDetailsView].[IsExported] AS [IsExported], 
+    [JobLogDetailsView].[Region] AS [Region], 
+    [JobLogDetailsView].[AdjustmentId] AS [AdjustmentId]
+    FROM [dbo].[JobLogDetailsView] AS [JobLogDetailsView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RegionView" EntityType="Self.RegionView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RegionView].[RegionId] AS [RegionId], 
+    [RegionView].[CompanyId] AS [CompanyId], 
+    [RegionView].[Region] AS [Region], 
+    [RegionView].[Description] AS [Description], 
+    [RegionView].[RegionDescription] AS [RegionDescription]
+    FROM [dbo].[RegionView] AS [RegionView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SystemUserView" EntityType="Self.SystemUserView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SystemUserView].[SystemUserId] AS [SystemUserId], 
+    [SystemUserView].[MenuId] AS [MenuId], 
+    [SystemUserView].[MenuNodesId] AS [MenuNodesId], 
+    [SystemUserView].[LastModifiedDate] AS [LastModifiedDate], 
+    [SystemUserView].[LastModifiedBy] AS [LastModifiedBy], 
+    [SystemUserView].[FirstName] AS [FirstName], 
+    [SystemUserView].[MiddleName] AS [MiddleName], 
+    [SystemUserView].[LastName] AS [LastName], 
+    [SystemUserView].[UserName] AS [UserName], 
+    [SystemUserView].[Password] AS [Password], 
+    [SystemUserView].[UserImage] AS [UserImage], 
+    [SystemUserView].[AccountExpirable] AS [AccountExpirable], 
+    [SystemUserView].[ActivePeriod] AS [ActivePeriod], 
+    [SystemUserView].[RequireUserChange] AS [RequireUserChange], 
+    [SystemUserView].[MenuDescription] AS [MenuDescription], 
+    [SystemUserView].[ControlName] AS [ControlName], 
+    [SystemUserView].[NodeDescription] AS [NodeDescription], 
+    [SystemUserView].[NodeControlName] AS [NodeControlName], 
+    [SystemUserView].[AccountExpirationDate] AS [AccountExpirationDate]
+    FROM [dbo].[SystemUserView] AS [SystemUserView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_TransactionImportAccountNo_TransactionImport" Association="Self.FK_TransactionImportAccountNo_TransactionImport">
+            <End Role="TransactionImport" EntitySet="TransactionImport" />
+            <End Role="TransactionImportAccountNo" EntitySet="TransactionImportAccountNo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ContractorManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CM_PayrollConfig">
+          <Key>
+            <PropertyRef Name="PayrollConfigId" />
+          </Key>
+          <Property Name="PayrollConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayrollYear" Type="Int32" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="Int32" Nullable="false" />
+          <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CloseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ContractorManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CM_PayrollConfig" EntityType="Self.CM_PayrollConfig" />
+          <EntitySet Name="TransactionImports" EntityType="ContractorManagementModel.TransactionImport" />
+          <EntitySet Name="TransactionImportAccountNoes" EntityType="ContractorManagementModel.TransactionImportAccountNo" />
+          <AssociationSet Name="FK_TransactionImportAccountNo_TransactionImport" Association="ContractorManagementModel.FK_TransactionImportAccountNo_TransactionImport">
+            <End Role="TransactionImport" EntitySet="TransactionImports" />
+            <End Role="TransactionImportAccountNo" EntitySet="TransactionImportAccountNoes" />
+          </AssociationSet>
+          <EntitySet Name="ClientBillingInfoViews" EntityType="ContractorManagementModel.ClientBillingInfoView" />
+          <EntitySet Name="CM_Config" EntityType="ContractorManagementModel.CM_Config" />
+          <EntitySet Name="CM_DiaryTemplate" EntityType="ContractorManagementModel.CM_DiaryTemplate" />
+          <EntitySet Name="ImportedTransactionsViews" EntityType="ContractorManagementModel.ImportedTransactionsView" />
+          <EntitySet Name="SystemSecurityConfigurations" EntityType="ContractorManagementModel.SystemSecurityConfiguration" />
+          <EntitySet Name="SystemUserSettings" EntityType="ContractorManagementModel.SystemUserSetting" />
+          <EntitySet Name="SystemUserViews" EntityType="ContractorManagementModel.SystemUserView" />
+          <EntitySet Name="SystemUsers" EntityType="ContractorManagementModel.SystemUser" />
+          <EntitySet Name="CM_Adjustment" EntityType="ContractorManagementModel.CM_Adjustment" />
+          <EntitySet Name="CM_AdjustmentType" EntityType="ContractorManagementModel.CM_AdjustmentType" />
+          <EntitySet Name="JobLogDetailsViews" EntityType="ContractorManagementModel.JobLogDetailsView" />
+          <EntitySet Name="CM_BusinessLine" EntityType="ContractorManagementModel.CM_BusinessLine" />
+          <EntitySet Name="RegionViews" EntityType="ContractorManagementModel.RegionView" />
+          <EntitySet Name="CM_ClientCode" EntityType="ContractorManagementModel.CM_ClientCode" />
+        </EntityContainer>
+        <EntityType Name="TransactionImport">
+          <Key>
+            <PropertyRef Name="TransactionImportId" />
+          </Key>
+          <Property Name="TransactionImportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SheetName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordCount" Type="Int32" Nullable="false" />
+          <Property Name="SelectedStartRow" Type="Int32" Nullable="false" />
+          <Property Name="ReferencedColumn" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="PayrollYear" Type="Int32" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="Int32" Nullable="false" />
+          <Property Name="IsExported" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExportedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DateExported" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TransactionImportAccountNoes" Relationship="ContractorManagementModel.FK_TransactionImportAccountNo_TransactionImport" FromRole="TransactionImport" ToRole="TransactionImportAccountNo" />
+          <Property Name="DifferenceRecovered" Type="Boolean" Nullable="false" />
+          <Property Name="RecoveredBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="RecoveryDate" Type="DateTime" Precision="3" />
+          <Property Name="ReferencedDateColumn" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="BusinessLineId" Type="Int32" Nullable="false" />
+          <Property Name="RegionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionImportAccountNo">
+          <Key>
+            <PropertyRef Name="TransactionImportAccountNoId" />
+          </Key>
+          <Property Name="TransactionImportAccountNoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionImportId" Type="Int32" Nullable="false" />
+          <Property Name="JobNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="TransactionImport" Relationship="ContractorManagementModel.FK_TransactionImportAccountNo_TransactionImport" FromRole="TransactionImportAccountNo" ToRole="TransactionImport" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_TransactionImportAccountNo_TransactionImport">
+          <End Type="ContractorManagementModel.TransactionImport" Role="TransactionImport" Multiplicity="1" />
+          <End Type="ContractorManagementModel.TransactionImportAccountNo" Role="TransactionImportAccountNo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionImport">
+              <PropertyRef Name="TransactionImportId" />
+            </Principal>
+            <Dependent Role="TransactionImportAccountNo">
+              <PropertyRef Name="TransactionImportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ClientBillingInfoView">
+          <Key>
+            <PropertyRef Name="JobLogId" />
+            <PropertyRef Name="DutyId" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="CompanyVehicle" />
+            <PropertyRef Name="BillableQuantity" />
+            <PropertyRef Name="PayrollPeriod" />
+            <PropertyRef Name="PayrollYear" />
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="TicketNo" />
+            <PropertyRef Name="JobDate" />
+            <PropertyRef Name="JobDescription" />
+            <PropertyRef Name="SiteAddress" />
+            <PropertyRef Name="TelephoneNo" />
+            <PropertyRef Name="LeadContractor" />
+            <PropertyRef Name="EmployeeRef" />
+            <PropertyRef Name="DutyCode" />
+            <PropertyRef Name="ClientCodeDescription" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="DiaryTemplateId" />
+            <PropertyRef Name="RegionId" />
+            <PropertyRef Name="BusinessLineId" />
+            <PropertyRef Name="Service" />
+            <PropertyRef Name="QA100" />
+            <PropertyRef Name="WRK" />
+            <PropertyRef Name="RG6M" />
+            <PropertyRef Name="RG6l" />
+            <PropertyRef Name="RG11" />
+            <PropertyRef Name="AMPS" />
+            <PropertyRef Name="SPLIT" />
+            <PropertyRef Name="CustomerName" />
+            <PropertyRef Name="ServiceOrderNo" />
+          </Key>
+          <Property Name="JobLogId" Type="Int32" Nullable="false" />
+          <Property Name="DutyId" Type="Int32" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyVehicle" Type="Boolean" Nullable="false" />
+          <Property Name="BillableQuantity" Type="Int32" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="Byte" Nullable="false" />
+          <Property Name="PayrollYear" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Contractor" Type="String" MaxLength="121" FixedLength="false" Unicode="false" />
+          <Property Name="TicketNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="JobDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="JobDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SiteAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TelephoneNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="LeadContractor" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeRef" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DutyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ClientCodeDescription" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Region" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="23" Scale="4" />
+          <Property Name="IsBilled" Type="Boolean" />
+          <Property Name="DiaryTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="RegionId" Type="Int16" Nullable="false" />
+          <Property Name="BusinessLineId" Type="Int32" Nullable="false" />
+          <Property Name="Service" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="QA100" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="WRK" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="RG6M" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RG6l" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RG11" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AMPS" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SPLIT" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="ServiceOrderNo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CM_Config">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="OrgUnitName" />
+            <PropertyRef Name="TicketNumberFormat" />
+            <PropertyRef Name="TicketNoMinLength" />
+            <PropertyRef Name="RequireJobTimes" />
+            <PropertyRef Name="EnabledJobTimes" />
+            <PropertyRef Name="MaxDaysInTheBack" />
+            <PropertyRef Name="PrimaryContractorsOrgUnitId" />
+            <PropertyRef Name="SecondaryContractorsOrgUnitId" />
+            <PropertyRef Name="CreateTeamsOnTheFly" />
+            <PropertyRef Name="BillingExportOrder" />
+            <PropertyRef Name="SeparateLateJobsInExport" />
+          </Key>
+          <Property Name="CompanyId" Type="Int16" Nullable="false" />
+          <Property Name="OrgUnitName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="TicketNumberFormat" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="TicketNoMinLength" Type="Byte" Nullable="false" />
+          <Property Name="RequireJobTimes" Type="Boolean" Nullable="false" />
+          <Property Name="EnabledJobTimes" Type="Boolean" Nullable="false" />
+          <Property Name="MaxDaysInTheBack" Type="Int16" Nullable="false" />
+          <Property Name="PrimaryContractorsOrgUnitId" Type="Int16" Nullable="false" />
+          <Property Name="SecondaryContractorsOrgUnitId" Type="Int16" Nullable="false" />
+          <Property Name="HFCTicketNumberFormat" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="HFCTicketNoMinLength" Type="Byte" />
+          <Property Name="CreateTeamsOnTheFly" Type="Boolean" Nullable="false" />
+          <Property Name="BillingExportOrder" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="SeparateLateJobsInExport" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CM_DiaryTemplate">
+          <Key>
+            <PropertyRef Name="DiaryTemplateId" />
+          </Key>
+          <Property Name="DiaryTemplateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SaveAs" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ImportedTransactionsView">
+          <Key>
+            <PropertyRef Name="TransactionImportId" />
+            <PropertyRef Name="FileName" />
+            <PropertyRef Name="SheetName" />
+            <PropertyRef Name="RecordCount" />
+            <PropertyRef Name="SelectedStartRow" />
+            <PropertyRef Name="ReferencedColumn" />
+            <PropertyRef Name="PayrollYear" />
+            <PropertyRef Name="PayrollPeriod" />
+            <PropertyRef Name="IsExported" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="TransactionImportAccountNoId" />
+            <PropertyRef Name="JobNumber" />
+            <PropertyRef Name="ReferencedDateColumn" />
+            <PropertyRef Name="DifferenceRecovered" />
+            <PropertyRef Name="BusinessLineId" />
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="TransactionImportId" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SheetName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecordCount" Type="Int32" Nullable="false" />
+          <Property Name="SelectedStartRow" Type="Int32" Nullable="false" />
+          <Property Name="ReferencedColumn" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="PayrollYear" Type="Int32" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="Int32" Nullable="false" />
+          <Property Name="IsExported" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExportedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DateExported" Type="DateTime" Precision="3" />
+          <Property Name="TransactionImportAccountNoId" Type="Int32" Nullable="false" />
+          <Property Name="JobNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="ReferencedDateColumn" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="DifferenceRecovered" Type="Boolean" Nullable="false" />
+          <Property Name="RecoveredBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="RecoveryDate" Type="DateTime" Precision="3" />
+          <Property Name="BusinessLineId" Type="Int32" Nullable="false" />
+          <Property Name="RegionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemSecurityConfiguration">
+          <Key>
+            <PropertyRef Name="SystemSecurityConfigurationId" />
+          </Key>
+          <Property Name="SystemSecurityConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnableAutoLogOut" Type="Boolean" Nullable="false" />
+          <Property Name="AutoLogOutMinutes" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemUserSetting">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="MdiParentImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SystemUserView">
+          <Key>
+            <PropertyRef Name="SystemUserId" />
+            <PropertyRef Name="MenuId" />
+            <PropertyRef Name="MenuNodesId" />
+            <PropertyRef Name="LastModifiedDate" />
+            <PropertyRef Name="LastModifiedBy" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="AccountExpirable" />
+            <PropertyRef Name="RequireUserChange" />
+            <PropertyRef Name="MenuDescription" />
+            <PropertyRef Name="ControlName" />
+            <PropertyRef Name="NodeDescription" />
+            <PropertyRef Name="NodeControlName" />
+          </Key>
+          <Property Name="SystemUserId" Type="Int32" Nullable="false" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="MenuNodesId" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="AccountExpirable" Type="Boolean" Nullable="false" />
+          <Property Name="ActivePeriod" Type="Int32" />
+          <Property Name="RequireUserChange" Type="Boolean" Nullable="false" />
+          <Property Name="MenuDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ControlName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NodeDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NodeControlName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountExpirationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SystemUser">
+          <Key>
+            <PropertyRef Name="SystemUserId" />
+          </Key>
+          <Property Name="SystemUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="AccountExpirable" Type="Boolean" Nullable="false" />
+          <Property Name="ActivePeriod" Type="Int32" />
+          <Property Name="RequireUserChange" Type="Boolean" Nullable="false" />
+          <Property Name="CurrentlyLoggedIn" Type="Boolean" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CM_Adjustment">
+          <Key>
+            <PropertyRef Name="AdjustmentId" />
+          </Key>
+          <Property Name="AdjustmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobLogId" Type="Int32" Nullable="false" />
+          <Property Name="PayrollPeriod" Type="Byte" Nullable="false" />
+          <Property Name="PayrollYear" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="AdjustmentTypeId" Type="Int16" Nullable="false" />
+          <Property Name="AdjustmentAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="AdjustmentNote" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AdjustmentDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="CM_AdjustmentType">
+          <Key>
+            <PropertyRef Name="AdjustmentTypeId" />
+          </Key>
+          <Property Name="AdjustmentTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdjustmentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reduction" Type="Boolean" Nullable="false" />
+          <Property Name="PayrollCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="JobLogDetailsView">
+          <Key>
+            <PropertyRef Name="JobLogId" />
+            <PropertyRef Name="DutyId" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="CompanyVehicle" />
+            <PropertyRef Name="BillableQuantity" />
+            <PropertyRef Name="PayrollPeriod" />
+            <PropertyRef Name="PayrollYear" />
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="TicketNo" />
+            <PropertyRef Name="JobDate" />
+            <PropertyRef Name="JobDescription" />
+            <PropertyRef Name="SiteAddress" />
+            <PropertyRef Name="TelephoneNo" />
+            <PropertyRef Name="LeadContractor" />
+            <PropertyRef Name="EmployeeRef" />
+            <PropertyRef Name="DutyCode" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="AdjustmentId" />
+          </Key>
+          <Property Name="JobLogId" Type="Int32" Nullable="false" />
+          <Property Name="DutyId" Type="Int32" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyVehicle" Type="Boolean" Nullable="false" />
+          <Property Name="BillableQuantity" Type="Decimal" Nullable="false" Precision="14" Scale="4" />
+          <Property Name="PayrollPeriod" Type="Byte" Nullable="false" />
+          <Property Name="PayrollYear" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Precision="38" Scale="11" />
+          <Property Name="Contractor" Type="String" MaxLength="132" FixedLength="false" Unicode="false" />
+          <Property Name="TicketNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="JobDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="JobDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SiteAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TelephoneNo" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="LeadContractor" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeRef" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PayrollCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DutyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IsExported" Type="Boolean" />
+          <Property Name="Region" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="AdjustmentId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CM_BusinessLine">
+          <Key>
+            <PropertyRef Name="BusinessLineId" />
+          </Key>
+          <Property Name="BusinessLineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessLineDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegionView">
+          <Key>
+            <PropertyRef Name="RegionId" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Name="RegionId" Type="Int16" Nullable="false" />
+          <Property Name="CompanyId" Type="Int16" Nullable="false" />
+          <Property Name="Region" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegionDescription" Type="String" MaxLength="73" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CM_ClientCode">
+          <Key>
+            <PropertyRef Name="ClientCodeId" />
+          </Key>
+          <Property Name="ClientCodeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DiaryTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="ExcludeFromBill" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ContractorManagementModelStoreContainer" CdmEntityContainer="ContractorManagementEntities">
+          <EntitySetMapping Name="CM_PayrollConfig">
+            <EntityTypeMapping TypeName="ContractorManagementModel.CM_PayrollConfig">
+              <MappingFragment StoreEntitySet="CM_PayrollConfig">
+                <ScalarProperty Name="PayrollConfigId" ColumnName="PayrollConfigId" />
+                <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+                <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+                <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionImports">
+            <EntityTypeMapping TypeName="ContractorManagementModel.TransactionImport">
+              <MappingFragment StoreEntitySet="TransactionImport">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="BusinessLineId" ColumnName="BusinessLineId" />
+                <ScalarProperty Name="ReferencedDateColumn" ColumnName="ReferencedDateColumn" />
+                <ScalarProperty Name="RecoveryDate" ColumnName="RecoveryDate" />
+                <ScalarProperty Name="RecoveredBy" ColumnName="RecoveredBy" />
+                <ScalarProperty Name="DifferenceRecovered" ColumnName="DifferenceRecovered" />
+                <ScalarProperty Name="DateExported" ColumnName="DateExported" />
+                <ScalarProperty Name="ExportedBy" ColumnName="ExportedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+                <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+                <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+                <ScalarProperty Name="ReferencedColumn" ColumnName="ReferencedColumn" />
+                <ScalarProperty Name="SelectedStartRow" ColumnName="SelectedStartRow" />
+                <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+                <ScalarProperty Name="SheetName" ColumnName="SheetName" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="TransactionImportId" ColumnName="TransactionImportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionImportAccountNoes">
+            <EntityTypeMapping TypeName="ContractorManagementModel.TransactionImportAccountNo">
+              <MappingFragment StoreEntitySet="TransactionImportAccountNo">
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+                <ScalarProperty Name="TransactionImportId" ColumnName="TransactionImportId" />
+                <ScalarProperty Name="TransactionImportAccountNoId" ColumnName="TransactionImportAccountNoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientBillingInfoViews">
+            <EntityTypeMapping TypeName="ContractorManagementModel.ClientBillingInfoView">
+              <MappingFragment StoreEntitySet="ClientBillingInfoView">
+                <ScalarProperty Name="ServiceOrderNo" ColumnName="ServiceOrderNo" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="SPLIT" ColumnName="SPLIT" />
+                <ScalarProperty Name="AMPS" ColumnName="AMPS" />
+                <ScalarProperty Name="RG11" ColumnName="RG11" />
+                <ScalarProperty Name="RG6l" ColumnName="RG6l" />
+                <ScalarProperty Name="RG6M" ColumnName="RG6M" />
+                <ScalarProperty Name="WRK" ColumnName="WRK" />
+                <ScalarProperty Name="QA100" ColumnName="QA100" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="BusinessLineId" ColumnName="BusinessLineId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="DiaryTemplateId" ColumnName="DiaryTemplateId" />
+                <ScalarProperty Name="IsBilled" ColumnName="IsBilled" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="ClientCodeDescription" ColumnName="ClientCodeDescription" />
+                <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
+                <ScalarProperty Name="EmployeeRef" ColumnName="EmployeeRef" />
+                <ScalarProperty Name="LeadContractor" ColumnName="LeadContractor" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="SiteAddress" ColumnName="SiteAddress" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="JobDate" ColumnName="JobDate" />
+                <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+                <ScalarProperty Name="Contractor" ColumnName="Contractor" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+                <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+                <ScalarProperty Name="BillableQuantity" ColumnName="BillableQuantity" />
+                <ScalarProperty Name="CompanyVehicle" ColumnName="CompanyVehicle" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="DutyId" ColumnName="DutyId" />
+                <ScalarProperty Name="JobLogId" ColumnName="JobLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CM_Config">
+            <EntityTypeMapping TypeName="ContractorManagementModel.CM_Config">
+              <MappingFragment StoreEntitySet="CM_Config">
+                <ScalarProperty Name="SeparateLateJobsInExport" ColumnName="SeparateLateJobsInExport" />
+                <ScalarProperty Name="BillingExportOrder" ColumnName="BillingExportOrder" />
+                <ScalarProperty Name="CreateTeamsOnTheFly" ColumnName="CreateTeamsOnTheFly" />
+                <ScalarProperty Name="HFCTicketNoMinLength" ColumnName="HFCTicketNoMinLength" />
+                <ScalarProperty Name="HFCTicketNumberFormat" ColumnName="HFCTicketNumberFormat" />
+                <ScalarProperty Name="SecondaryContractorsOrgUnitId" ColumnName="SecondaryContractorsOrgUnitId" />
+                <ScalarProperty Name="PrimaryContractorsOrgUnitId" ColumnName="PrimaryContractorsOrgUnitId" />
+                <ScalarProperty Name="MaxDaysInTheBack" ColumnName="MaxDaysInTheBack" />
+                <ScalarProperty Name="EnabledJobTimes" ColumnName="EnabledJobTimes" />
+                <ScalarProperty Name="RequireJobTimes" ColumnName="RequireJobTimes" />
+                <ScalarProperty Name="TicketNoMinLength" ColumnName="TicketNoMinLength" />
+                <ScalarProperty Name="TicketNumberFormat" ColumnName="TicketNumberFormat" />
+                <ScalarProperty Name="OrgUnitName" ColumnName="OrgUnitName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CM_DiaryTemplate">
+            <EntityTypeMapping TypeName="ContractorManagementModel.CM_DiaryTemplate">
+              <MappingFragment StoreEntitySet="CM_DiaryTemplate">
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SaveAs" ColumnName="SaveAs" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DiaryTemplateId" ColumnName="DiaryTemplateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImportedTransactionsViews">
+            <EntityTypeMapping TypeName="ContractorManagementModel.ImportedTransactionsView">
+              <MappingFragment StoreEntitySet="ImportedTransactionsView">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="BusinessLineId" ColumnName="BusinessLineId" />
+                <ScalarProperty Name="RecoveryDate" ColumnName="RecoveryDate" />
+                <ScalarProperty Name="RecoveredBy" ColumnName="RecoveredBy" />
+                <ScalarProperty Name="DifferenceRecovered" ColumnName="DifferenceRecovered" />
+                <ScalarProperty Name="ReferencedDateColumn" ColumnName="ReferencedDateColumn" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+                <ScalarProperty Name="TransactionImportAccountNoId" ColumnName="TransactionImportAccountNoId" />
+                <ScalarProperty Name="DateExported" ColumnName="DateExported" />
+                <ScalarProperty Name="ExportedBy" ColumnName="ExportedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+                <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+                <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+                <ScalarProperty Name="ReferencedColumn" ColumnName="ReferencedColumn" />
+                <ScalarProperty Name="SelectedStartRow" ColumnName="SelectedStartRow" />
+                <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+                <ScalarProperty Name="SheetName" ColumnName="SheetName" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="TransactionImportId" ColumnName="TransactionImportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemSecurityConfigurations">
+            <EntityTypeMapping TypeName="ContractorManagementModel.SystemSecurityConfiguration">
+              <MappingFragment StoreEntitySet="SystemSecurityConfiguration">
+                <ScalarProperty Name="AutoLogOutMinutes" ColumnName="AutoLogOutMinutes" />
+                <ScalarProperty Name="EnableAutoLogOut" ColumnName="EnableAutoLogOut" />
+                <ScalarProperty Name="SystemSecurityConfigurationId" ColumnName="SystemSecurityConfigurationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemUserSettings">
+            <EntityTypeMapping TypeName="ContractorManagementModel.SystemUserSetting">
+              <MappingFragment StoreEntitySet="SystemUserSettings">
+                <ScalarProperty Name="MdiParentImage" ColumnName="MdiParentImage" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemUserViews">
+            <EntityTypeMapping TypeName="ContractorManagementModel.SystemUserView">
+              <MappingFragment StoreEntitySet="SystemUserView">
+                <ScalarProperty Name="AccountExpirationDate" ColumnName="AccountExpirationDate" />
+                <ScalarProperty Name="NodeControlName" ColumnName="NodeControlName" />
+                <ScalarProperty Name="NodeDescription" ColumnName="NodeDescription" />
+                <ScalarProperty Name="ControlName" ColumnName="ControlName" />
+                <ScalarProperty Name="MenuDescription" ColumnName="MenuDescription" />
+                <ScalarProperty Name="RequireUserChange" ColumnName="RequireUserChange" />
+                <ScalarProperty Name="ActivePeriod" ColumnName="ActivePeriod" />
+                <ScalarProperty Name="AccountExpirable" ColumnName="AccountExpirable" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="MenuNodesId" ColumnName="MenuNodesId" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemUsers">
+            <EntityTypeMapping TypeName="ContractorManagementModel.SystemUser">
+              <MappingFragment StoreEntitySet="SystemUsers">
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CurrentlyLoggedIn" ColumnName="CurrentlyLoggedIn" />
+                <ScalarProperty Name="RequireUserChange" ColumnName="RequireUserChange" />
+                <ScalarProperty Name="ActivePeriod" ColumnName="ActivePeriod" />
+                <ScalarProperty Name="AccountExpirable" ColumnName="AccountExpirable" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CM_Adjustment">
+            <EntityTypeMapping TypeName="ContractorManagementModel.CM_Adjustment">
+              <MappingFragment StoreEntitySet="CM_Adjustment">
+                <ScalarProperty Name="AdjustmentDate" ColumnName="AdjustmentDate" />
+                <ScalarProperty Name="AdjustmentNote" ColumnName="AdjustmentNote" />
+                <ScalarProperty Name="AdjustmentAmount" ColumnName="AdjustmentAmount" />
+                <ScalarProperty Name="AdjustmentTypeId" ColumnName="AdjustmentTypeId" />
+                <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+                <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+                <ScalarProperty Name="JobLogId" ColumnName="JobLogId" />
+                <ScalarProperty Name="AdjustmentId" ColumnName="AdjustmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CM_AdjustmentType">
+            <EntityTypeMapping TypeName="ContractorManagementModel.CM_AdjustmentType">
+              <MappingFragment StoreEntitySet="CM_AdjustmentType">
+                <ScalarProperty Name="PayrollCode" ColumnName="PayrollCode" />
+                <ScalarProperty Name="Reduction" ColumnName="Reduction" />
+                <ScalarProperty Name="AdjustmentType" ColumnName="AdjustmentType" />
+                <ScalarProperty Name="AdjustmentTypeId" ColumnName="AdjustmentTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobLogDetailsViews">
+            <EntityTypeMapping TypeName="ContractorManagementModel.JobLogDetailsView">
+              <MappingFragment StoreEntitySet="JobLogDetailsView">
+                <ScalarProperty Name="AdjustmentId" ColumnName="AdjustmentId" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+                <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
+                <ScalarProperty Name="PayrollCode" ColumnName="PayrollCode" />
+                <ScalarProperty Name="EmployeeRef" ColumnName="EmployeeRef" />
+                <ScalarProperty Name="LeadContractor" ColumnName="LeadContractor" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="SiteAddress" ColumnName="SiteAddress" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="JobDate" ColumnName="JobDate" />
+                <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+                <ScalarProperty Name="Contractor" ColumnName="Contractor" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="PayrollYear" ColumnName="PayrollYear" />
+                <ScalarProperty Name="PayrollPeriod" ColumnName="PayrollPeriod" />
+                <ScalarProperty Name="BillableQuantity" ColumnName="BillableQuantity" />
+                <ScalarProperty Name="CompanyVehicle" ColumnName="CompanyVehicle" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="DutyId" ColumnName="DutyId" />
+                <ScalarProperty Name="JobLogId" ColumnName="JobLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CM_BusinessLine">
+            <EntityTypeMapping TypeName="ContractorManagementModel.CM_BusinessLine">
+              <MappingFragment StoreEntitySet="CM_BusinessLine">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="BusinessLineDescription" ColumnName="BusinessLineDescription" />
+                <ScalarProperty Name="BusinessLineId" ColumnName="BusinessLineId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegionViews">
+            <EntityTypeMapping TypeName="ContractorManagementModel.RegionView">
+              <MappingFragment StoreEntitySet="RegionView">
+                <ScalarProperty Name="RegionDescription" ColumnName="RegionDescription" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CM_ClientCode">
+            <EntityTypeMapping TypeName="ContractorManagementModel.CM_ClientCode">
+              <MappingFragment StoreEntitySet="CM_ClientCode">
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ExcludeFromBill" ColumnName="ExcludeFromBill" />
+                <ScalarProperty Name="DiaryTemplateId" ColumnName="DiaryTemplateId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ClientCodeId" ColumnName="ClientCodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

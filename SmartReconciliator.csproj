@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{167F8625-09DE-4F12-8307-D4C48E4484C2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmartReconciliator</RootNamespace>
+    <AssemblyName>SmartReconciliator</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Hopstarter-Sleek-Xp-Basic-Money.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ApplicationSecurity">
+      <HintPath>..\..\ApplicationSecurity\ApplicationSecurity\bin\Debug\ApplicationSecurity.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Crystal, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Crystal.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.CrystalDark, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.CrystalDark.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Desert, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Desert.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Fluent, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.FluentDark, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.FluentDark.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Material, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Material.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.MaterialBlueGrey, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.MaterialBlueGrey.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.MaterialPink, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.MaterialPink.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.MaterialTeal, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.MaterialTeal.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Black, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2010Black.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Blue, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2010Blue.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Silver, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2010Silver.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Dark, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2013Dark.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Windows7.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2016.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Omar\Documents\Visual Studio 2017\Projects\DigitalWarehouse\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adjustment\FrmTransactionAdjustment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adjustment\FrmTransactionAdjustment.Designer.cs">
+      <DependentUpon>FrmTransactionAdjustment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adjustment\FrmTransactionSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adjustment\FrmTransactionSelection.Designer.cs">
+      <DependentUpon>FrmTransactionSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationUtil\fileImportDefinition.cs" />
+    <Compile Include="ApplicationUtil\memoryManagement.cs" />
+    <Compile Include="ApplicationUtil\payPeriodDefinition.cs" />
+    <Compile Include="ApplicationUtil\workSheetDefinition.cs" />
+    <Compile Include="ClientBillingInfoView.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CM_Adjustment.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CM_AdjustmentType.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CM_BusinessLine.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CM_ClientCode.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CM_Config.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CM_DiaryTemplate.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CM_PayrollConfig.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Export\FrmGenerateBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\FrmGenerateBill.Designer.cs">
+      <DependentUpon>FrmGenerateBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileAmendment\FrmRemoveImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileAmendment\FrmRemoveImport.Designer.cs">
+      <DependentUpon>FrmRemoveImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWaitDialogue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWaitDialogue.Designer.cs">
+      <DependentUpon>FrmWaitDialogue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportedTransactionsView.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Import\FrmFileImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Import\FrmFileImport.Designer.cs">
+      <DependentUpon>FrmFileImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JobLogDetailsView.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadForm1.Designer.cs">
+      <DependentUpon>RadForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReconcilerModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReconcilerModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReconcilerModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReconcilerModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReconcilerModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="RegionView.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSecurityConfiguration.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemUser.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemUserSetting.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemUserView.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionImport.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionImportAccountNo.cs">
+      <DependentUpon>ReconcilerModel.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Adjustment\FrmTransactionAdjustment.resx">
+      <DependentUpon>FrmTransactionAdjustment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adjustment\FrmTransactionSelection.resx">
+      <DependentUpon>FrmTransactionSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\FrmGenerateBill.resx">
+      <DependentUpon>FrmGenerateBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileAmendment\FrmRemoveImport.resx">
+      <DependentUpon>FrmRemoveImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWaitDialogue.resx">
+      <DependentUpon>FrmWaitDialogue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Import\FrmFileImport.resx">
+      <DependentUpon>FrmFileImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="RadForm1.resx">
+      <DependentUpon>RadForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\CM_AdjustmentType.datasource" />
+    <None Include="Properties\DataSources\CM_BusinessLine.datasource" />
+    <None Include="Properties\DataSources\CM_PayrollConfig.datasource" />
+    <None Include="Properties\DataSources\RegionView.datasource" />
+    <None Include="Properties\DataSources\SmartReconciliator.ApplicationUtil.payPeriodDefinition.datasource" />
+    <None Include="Properties\DataSources\SmartReconciliator.ApplicationUtil.workSheetDefinition.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="ReconcilerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ReconcilerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ReconcilerModel.edmx.diagram">
+      <DependentUpon>ReconcilerModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--sirinie -->
+    <Content Include="Hopstarter-Sleek-Xp-Basic-Money.ico" />
+    <Content Include="ReconcilerModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ReconcilerModel.Context.cs</LastGenOutput>
+      <DependentUpon>ReconcilerModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="ReconcilerModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ReconcilerModel.edmx</DependentUpon>
+      <LastGenOutput>ReconcilerModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\Apps-system-software-update-icon.png" />
+    <None Include="Resources\old_openofficeorg_calc.png" />
+    <None Include="Resources\iconfinder_user-group-new_23632.png" />
+    <None Include="Resources\Apps-background-icon.png" />
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ShouldAddDPIScalingManifest="True" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

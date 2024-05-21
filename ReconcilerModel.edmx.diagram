@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5085a0be079a487895aec369858af859" Name="Diagram1">
+        <EntityTypeShape EntityType="ContractorManagementModel.CM_PayrollConfig" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ContractorManagementModel.TransactionImport" Width="1.5" PointX="2.625" PointY="0.75" />
+        <EntityTypeShape EntityType="ContractorManagementModel.TransactionImportAccountNo" Width="1.5" PointX="4.625" PointY="10.5" />
+        <AssociationConnector Association="ContractorManagementModel.FK_TransactionImportAccountNo_TransactionImport" />
+        <EntityTypeShape EntityType="ContractorManagementModel.ClientBillingInfoView" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="ContractorManagementModel.CM_Config" Width="1.5" PointX="2.625" PointY="6.25" />
+        <EntityTypeShape EntityType="ContractorManagementModel.CM_DiaryTemplate" Width="1.5" PointX="4.625" PointY="0.75" />
+        <EntityTypeShape EntityType="ContractorManagementModel.ImportedTransactionsView" Width="1.5" PointX="4.625" PointY="3.375" />
+        <EntityTypeShape EntityType="ContractorManagementModel.SystemSecurityConfiguration" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ContractorManagementModel.SystemUserSetting" Width="1.5" PointX="4.625" PointY="8.875" />
+        <EntityTypeShape EntityType="ContractorManagementModel.SystemUserView" Width="1.5" PointX="6.75" PointY="2.75" />
+        <EntityTypeShape EntityType="ContractorManagementModel.SystemUser" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ContractorManagementModel.CM_Adjustment" Width="1.5" PointX="9" PointY="0.75" />
+        <EntityTypeShape EntityType="ContractorManagementModel.CM_AdjustmentType" Width="1.5" PointX="9" PointY="3.625" />
+        <EntityTypeShape EntityType="ContractorManagementModel.JobLogDetailsView" Width="1.5" PointX="9" PointY="5.75" />
+        <EntityTypeShape EntityType="ContractorManagementModel.CM_BusinessLine" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ContractorManagementModel.RegionView" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ContractorManagementModel.CM_ClientCode" Width="1.5" PointX="11.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
